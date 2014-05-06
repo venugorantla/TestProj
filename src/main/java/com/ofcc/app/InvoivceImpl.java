@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public class InvoivceImpl implements InvoiceI {
 
 	private static final BigDecimal CONSTANT_100THOUSAND = new BigDecimal("100000");
-	
+	private static final BigDecimal CONSTANT_500THOUSAND = new BigDecimal("500000");
 	
 
 	public Fee caliculateFee(Invoice invoice) {
@@ -15,16 +15,24 @@ public class InvoivceImpl implements InvoiceI {
 		if(invoice!=null && invoice.getInvoiceAmt().signum()==1)
 		{
 			BigDecimal invoiceAmt=invoice.getInvoiceAmt();
-			if( invoiceAmt.longValue() > CONSTANT_100THOUSAND.longValue() )
+			if( invoiceAmt.longValue() <= CONSTANT_100THOUSAND.longValue() )
 			{
 				
 				fee.setFeeAmt(invoiceAmt.multiply(new BigDecimal("0.2")));
 			}
-			else
+			else if(invoiceAmt.longValue() > CONSTANT_100THOUSAND.longValue() && invoiceAmt.longValue() <= CONSTANT_500THOUSAND.longValue())
 			{
 				BigDecimal bgAmt = invoice.getInvoiceAmt().subtract(CONSTANT_100THOUSAND);
 				fee.setFeeAmt(
 						new BigDecimal("100000").multiply(new BigDecimal("0.2")).add((bgAmt.multiply(new BigDecimal("0.1"))))
+						);
+				
+			}
+			else
+			{
+				BigDecimal bgAmt = invoice.getInvoiceAmt().subtract(CONSTANT_500THOUSAND);
+				fee.setFeeAmt(
+						new BigDecimal("100000").multiply(new BigDecimal("0.2")).add((new BigDecimal("400000").multiply(new BigDecimal("0.1")))).add(bgAmt.multiply(new BigDecimal("0.05")))
 						);
 				
 			}
