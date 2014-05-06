@@ -1,6 +1,7 @@
 package com.ofcc.app;
 
 import java.math.BigDecimal;
+import java.math.BigDecimal;
 
 public class InvoivceImpl implements InvoiceI {
 
@@ -15,7 +16,7 @@ public class InvoivceImpl implements InvoiceI {
 		if(invoice!=null && invoice.getInvoiceAmt().signum()==1)
 		{
 			BigDecimal invoiceAmt=invoice.getInvoiceAmt();
-			if( invoiceAmt.longValue() > CONSTANT_100THOUSAND.longValue() )
+			if( invoiceAmt.longValue()< CONSTANT_100THOUSAND.longValue() )
 			{
 				
 				fee.setFeeAmt(invoiceAmt.multiply(new BigDecimal("0.2")));

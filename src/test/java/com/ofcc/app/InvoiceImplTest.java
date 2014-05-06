@@ -41,8 +41,8 @@ public class InvoiceImplTest extends TestCase {
     	invoice.setInvoiceAmt(new BigDecimal("200000"));
     	InvoiceI invoiceI = new InvoivceImpl();
     	Fee fee = invoiceI.caliculateFee(invoice);
-        assertTrue( fee.getFeeAmt().compareTo(new BigDecimal("30000"))==1) ;
-    	
+        assertTrue( fee.getFeeAmt().longValue()==30000) ;
+    	 
     }
     
     public void testInvoiceImpltrue2()
@@ -51,7 +51,7 @@ public class InvoiceImplTest extends TestCase {
     	invoice.setInvoiceAmt(new BigDecimal("50000"));
     	InvoiceI invoiceI = new InvoivceImpl();
     	Fee fee = invoiceI.caliculateFee(invoice);
-    	assertTrue( fee.getFeeAmt().compareTo(new BigDecimal("10000"))==1);
+    	assertTrue( fee.getFeeAmt().longValue()==10000);
     	
     }
 }
