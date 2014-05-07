@@ -38,10 +38,10 @@ public class InvoiceImplTest extends TestCase {
     public void testInvoiceImpltrue()
     {
     	Invoice invoice = new Invoice();
-    	invoice.setInvoiceAmt(new BigDecimal("600000"));
+    	invoice.setInvoiceAmt(new BigDecimal("230000"));
     	InvoiceI invoiceI = new InvoivceImpl();
     	Fee fee = invoiceI.caliculateFee(invoice);
-    	assertTrue( fee.getFeeAmt().longValue()==30000) ;
+    	assertTrue( fee.getFeeAmt().longValue()==32000) ;
     	
     }
     
